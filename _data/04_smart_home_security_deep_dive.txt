@@ -1,0 +1,57 @@
+
+===== PAGE 1 =====
+
+SmartHome IoT — Security, Privacy, and Incident
+ Response Deep Dive
+1. Security Model
+A connected-home system controls physical devices, so security failures can have consequences beyond ordinary
+software errors. Unauthorized access to a smart lock, camera, or alarm-related device may affect household safety
+and privacy. Security must therefore be considered across users, devices, networks, APIs, cloud services, and
+applications.
+Authentication verifies identity. Authorization determines permissions. These concepts should remain separate
+because a valid account should not automatically have permission to control every device in a household.
+2. Identity and Access Control
+Household owners may have full administrative access, while regular members may control devices but not manage
+account settings. Guests may receive temporary or limited access. Permissions should be reviewed when household
+membership changes.
+Multi-factor authentication provides an additional protection layer. Recovery processes are also security-sensitive
+because an attacker who can easily recover an account can bypass other controls. Recovery codes and verification
+tokens should never be shared.
+Device identities should be unique. Default passwords and shared credentials increase the impact of compromise
+because one leaked credential can affect many devices.
+3. Data Security and Privacy
+Smart-home platforms can collect information about when residents are home, when doors are opened, how much
+energy is consumed, and when motion is detected. This information can reveal daily routines. The platform should
+minimize unnecessary collection and provide clear explanations of how data is used.
+Data should be protected in transit and at rest using appropriate security mechanisms. Access to historical telemetry
+and camera-related information should be limited to authorized users and services.
+Retention should be defined. Keeping every event indefinitely increases storage requirements and can create
+unnecessary privacy risk. Different data categories may require different retention periods.
+4. API and Application Security
+APIs should validate authentication, authorization, input values, and resource ownership. A user who has access to
+one home should not be able to request device information from another home simply by changing an identifier in a
+request.
+Applications should not expose secrets in logs or client-side code. Error messages should help legitimate users
+troubleshoot problems without revealing database details, private keys, internal network addresses, or other
+sensitive implementation information.
+Rate limiting can reduce abuse and protect service availability. Sensitive actions such as changing account
+credentials or granting a new household member may require additional verification.
+5. Incident Response
+An incident can include suspicious login activity, compromised credentials, malware on a gateway, unauthorized
+device access, or unusual API behavior. The first objective is to contain the issue while preserving enough
+information to understand what happened.
+During an incident, teams should identify affected accounts and devices, revoke compromised credentials, isolate
+affected components when possible, review logs, and restore trusted configurations. After recovery, the organization
+
+
+===== PAGE 2 =====
+
+should document the cause and improve controls that failed.
+Users should have a simple reporting process. They should know where to report phishing, suspicious device
+behavior, unexpected lock events, or unauthorized account activity.
+6. Security Operations
+Security monitoring should track authentication failures, unusual login locations where appropriate, permission
+changes, device enrollment, firmware changes, and high-impact commands. Alerts should be prioritized so that
+important signals are not buried under low-value notifications.
+Regular reviews should verify that old users have been removed, unused devices have been retired, integrations are
+still required, firmware is supported, and automation rules do not create unsafe behavior.

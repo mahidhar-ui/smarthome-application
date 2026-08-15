@@ -1,0 +1,66 @@
+
+===== PAGE 1 =====
+
+SmartHome IoT — Device Management and Operations
+ Deep Dive
+1. Device Lifecycle
+Device management begins before a device is installed. A device should have documented specifications, supported
+capabilities, security requirements, communication requirements, and maintenance procedures. During enrollment,
+the device receives or confirms its identity and becomes associated with a specific household.
+The lifecycle normally includes registration, configuration, normal operation, maintenance, replacement, and
+retirement. Retirement is important because a device that has been physically removed but remains registered can
+create confusion and unnecessary security risk. Retired devices should be disabled and removed from active
+automations.
+2. Device Enrollment and Configuration
+During enrollment, the user selects the device type and follows the pairing procedure. The platform records the
+device identifier, device type, model, firmware version, room, and supported capabilities. The user should then give
+the device a meaningful name. Names such as Living Room Ceiling Light are more useful than generic names such
+as Device 7.
+Configuration can include brightness defaults, thermostat operating modes, sensor reporting intervals, battery
+warning thresholds, and device-specific settings. Configuration changes should be validated before they are stored.
+A value outside the supported range should generate a clear error rather than silently being changed.
+Room assignment is also part of configuration. A device located in the bedroom should not remain assigned to the
+garage after installation. Correct room information improves dashboards, voice commands, automation rules, and
+support procedures.
+3. Device State and Telemetry
+Device state describes the current or last-known condition of a device. For a light, state might include on or off and
+brightness. For a thermostat, state might include current temperature, target temperature, and operating mode. For a
+smart lock, state might include locked, unlocked, or unknown.
+Telemetry is a stream of measurements or events produced over time. Temperature, humidity, power consumption,
+and motion events are examples. Telemetry should include a timestamp and unit where appropriate. Historical
+telemetry allows users to identify patterns such as increasing energy consumption or repeated temperature
+fluctuations.
+Because communication can fail, the last-known state should be clearly distinguished from a confirmed current state.
+An application may display Last Seen 15 minutes ago instead of claiming that the device is currently online.
+4. Device Maintenance
+Maintenance includes firmware updates, battery replacement, calibration, connectivity checks, and inspection of
+automation rules. Firmware updates can improve reliability and security, but the update process must be protected
+against interruption. A device should not be considered healthy simply because an update was initiated; the platform
+should verify the resulting firmware state.
+Battery-powered sensors should report battery level. A low-battery notification should provide enough information for
+the user to identify the affected device and room. If a battery becomes critically low, the platform may reduce
+reporting frequency depending on device capabilities.
+Some sensors require calibration. A temperature sensor, for example, may need comparison against a known
+reference. Calibration records should contain the date, device identifier, procedure, and result.
+5. Troubleshooting
+
+
+===== PAGE 2 =====
+
+When a device is offline, troubleshooting should begin with the simplest possible causes. Check whether the device
+has power, whether the gateway is online, whether the device is within communication range, and whether the
+device has recently changed state. Repeated resets should be avoided when an update or configuration operation is
+in progress.
+When a command fails, determine whether the device is reachable and whether the user has permission to perform
+the action. Check whether the requested capability exists. A brightness command sent to an on/off-only device
+should be rejected as unsupported.
+When sensor readings appear incorrect, examine the environment, placement, calibration, battery level, and recent
+firmware changes. Comparing the sensor against another trusted measurement can help identify whether the
+problem is the sensor or the environment.
+6. Replacement and Retirement
+When replacing a device, the old device should first be identified in every automation that references it. The
+replacement device should be enrolled, assigned to the correct room, and tested. Automations should then be
+updated and verified.
+Retirement should invalidate or disable device credentials where applicable. The device should be removed from
+active dashboards and automations. Historical telemetry may be retained according to the platform's data-retention
+policy, but it should remain associated with the correct historical device identity.
