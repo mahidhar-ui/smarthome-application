@@ -253,5 +253,4 @@ Notes on the free Render tier
 - Free tier has 512MB RAM — the TF-IDF version fits comfortably; the ChromaDB version may exceed this and crash
 - To keep it always awake, upgrade to Render's paid tier or use an uptime monitor like
   https://uptimerobot.com to ping it every 10 minutes
-
-Live demo: 
+Available at your primary URL https://smarthome-application-4.onrender.com
