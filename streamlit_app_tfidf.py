@@ -200,16 +200,16 @@ def load_rag():
 
             chunk_words = words[start:start + chunk_size]
 
-        if not chunk_words:
-            continue
+            if not chunk_words:
+                continue
 
-        chunk = " ".join(chunk_words).strip()
+            chunk = " ".join(chunk_words).strip()
 
-        if len(chunk) < 50:
-            continue
+            if len(chunk) < 50:
+                continue
 
-        chunks.append(chunk)
-        sources.append(filename)
+            chunks.append(chunk)
+            sources.append(filename)
 
     # Build the TF-IDF document-term matrix.
     # fit_transform() does fit() + transform() in one step.
