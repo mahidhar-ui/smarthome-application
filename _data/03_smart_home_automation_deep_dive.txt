@@ -1,54 +1,60 @@
+SmartHome IoT — Automation, Rules, and Event Processing Deep Dive
 
-===== PAGE 1 =====
-
-SmartHome IoT — Automation, Rules, and Event
- Processing Deep Dive
 1. Automation Fundamentals
 Automation allows the SmartHome platform to respond to events without requiring a user to manually issue every
 command. A rule generally consists of a trigger, zero or more conditions, and one or more actions. This structure
 allows the same engine to support simple schedules as well as complex event-driven behavior.
+
 A trigger identifies an event that begins rule evaluation. A trigger may be a clock time, a device state change, a
 sensor measurement, a user action, or a system event. Conditions provide additional restrictions. Actions describe
 what the system should do after all required conditions are satisfied.
+
 2. Event-Driven Rules
 Consider a motion sensor in a hallway. The trigger is MotionDetected. The rule may contain a condition that the local
 time is after sunset. The action may be TurnLightOn with brightness set to 40 percent. The system should record the
 event, evaluate the rule, issue the action, and record whether the action succeeded.
+
 Event processing should consider duplicate events. A motion sensor can report several events within a short period.
 If every event causes a separate command, the system may repeatedly send the same instruction. A cooldown
 period or state-aware action can reduce unnecessary commands.
+
 3. Schedules and Conditions
 Schedules are useful for predictable routines. A thermostat can be configured to reduce the target temperature
 during working hours and restore a preferred temperature in the evening. A lighting schedule can turn outdoor lights
 on during expected evening hours.
+
 Conditions make schedules more flexible. Instead of turning lights on at a fixed time every day, a rule can combine a
 schedule with an ambient-light condition. Conditions can also include household mode, device availability, user
 presence, or security state.
+
 Time zones must be handled carefully. The platform should know which time zone belongs to the home and should
 define behavior for daylight-saving changes where relevant.
+
 4. Scenes and Modes
 A scene is a named collection of actions. A Leaving Home scene could switch off selected lights, reduce thermostat
 activity, and activate security sensors. A Movie scene could dim lights and adjust compatible equipment.
+
 Household modes are broader states such as Home, Away, Night, or Vacation. Automations can use these modes
 as conditions. For example, motion in the living room may be ignored during Home mode but generate a security
 notification during Vacation mode.
+
 5. Conflicting Rules and Safety
 Conflicting rules occur when different automations attempt to control the same device. One rule may turn a light on
 while another turns it off. The platform should have a documented precedence mechanism rather than producing
 unpredictable results.
+
 Safety-related actions require additional care. A water-leak alert or smoke-related event should receive higher
 priority than a convenience rule. High-impact commands may require confirmation or additional authorization
 depending on the product design.
+
 Automation testing should include normal cases, boundary cases, duplicate events, unavailable devices, conflicting
 rules, and recovery after network interruptions.
+
 6. Monitoring and Audit
-
-
-===== PAGE 2 =====
-
 Automation logs should explain what happened. A useful record can contain the automation identifier, triggering
 event, conditions evaluated, action attempted, result, and timestamp. This makes it possible to explain unexpected
 behavior.
+
 Users should also be able to disable an automation temporarily. When a rule is disabled, the interface should make
 that status visible. After modifications, the system should retain enough history to determine who changed the rule
 and when.

@@ -1,56 +1,63 @@
+SmartHome IoT — Troubleshooting, Support, and Operations Deep Dive
 
-===== PAGE 1 =====
-
-SmartHome IoT — Troubleshooting, Support, and
- Operations Deep Dive
 1. Troubleshooting Method
 Effective troubleshooting is a structured process rather than random trial and error. First describe the symptom
 precisely. Then identify which component could cause the symptom, isolate the component, perform a controlled
 test, and verify the result.
+
 For example, if a mobile application cannot control a light, possible causes include a phone network problem,
 cloud-service outage, gateway failure, light power failure, device connectivity problem, permission issue, or
 unsupported command. Checking each layer in a logical order reduces unnecessary resets.
+
 2. Connectivity Problems
 When the application cannot connect, first determine whether the problem affects one device or the entire service. If
 multiple devices and users are affected, a platform or network issue is more likely. If only one device is affected,
 investigate that device and its local connection.
+
 A gateway that is offline should be checked for power and network connectivity. If the gateway is online but a device
 is offline, investigate device range, battery level, pairing state, and recent changes.
+
 Repeated disconnects may indicate interference, poor signal quality, firmware problems, power instability, or
 overloaded infrastructure. Support teams should record patterns rather than treating every event as an isolated
 incident.
+
 3. Application and API Problems
 An application error should be examined together with the backend response where appropriate. Authentication
 errors, authorization failures, validation errors, timeouts, and service-unavailable conditions have different causes
 and should not be treated identically.
+
 A timeout does not always mean that an operation failed. The request may have reached the backend or device but
 the response may have been delayed. For important commands, the system should check resulting device state
 before safely retrying.
+
 API errors should include a safe error identifier so support teams can correlate a user's report with server-side logs
 without exposing sensitive information.
+
 4. Sensor Problems
 Incorrect sensor data can result from calibration, placement, environmental conditions, battery problems, damaged
 hardware, or communication delays. A temperature sensor located near a heat source may report a value that is
 technically accurate at its location but not representative of the room.
+
 When investigating an incorrect measurement, compare it with a trusted reference, examine timestamps, check
 recent calibration, and inspect the device's health status. Do not immediately assume that the cloud database is
 responsible.
+
 5. Support Tickets and Escalation
 A useful support ticket should include the device name, household or room, symptom, time of occurrence, error
 message, recent changes, and steps already attempted. Screenshots or log identifiers can be helpful when they do
 not contain sensitive information.
+
 Escalation is appropriate when the issue affects safety, security, many users, critical household functions, or cannot
 be resolved through standard procedures. Security incidents should follow the security response process rather than
 ordinary troubleshooting.
 
-
-===== PAGE 2 =====
-
 Support personnel should document the final cause and resolution. A good knowledge base can use these
 documented incidents to improve future troubleshooting.
+
 6. Preventive Maintenance
 Preventive maintenance includes firmware review, battery checks, connectivity monitoring, account permission
 reviews, and automation validation. A device that repeatedly becomes offline should be investigated before it causes
 a more serious failure.
+
 After maintenance, verify that device state, automations, notifications, and application dashboards still behave as
 expected. Changes should be documented so future support engineers understand what was modified.
